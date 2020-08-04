@@ -1,0 +1,7 @@
+This library is based on software developed by David Kopec as code with the book
+Classic Computer Science Problems In Java (c) Manning.com - 2020
+
+The original source code can be found at https://github.com/davecom/ClassicComputerScienceProblemsInJava
+
+I've added some convenience methods, removed use of null, and added unit tests, with the
+purpose to use the library for solving generic Java puzzles...
