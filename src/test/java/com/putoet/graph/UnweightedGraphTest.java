@@ -106,4 +106,15 @@ class UnweightedGraphTest {
         assertEquals("Boston", path.get(0));
         assertEquals("Miami", path.get(path.size() - 1));
     }
+
+    @Test
+    void contains() {
+        final UnweightedGraph<String> graph = new UnweightedGraph<>();
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("D");
+
+        assertFalse(graph.contains("C"));
+        assertTrue(graph.contains("B"));
+    }
 }

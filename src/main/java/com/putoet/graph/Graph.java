@@ -38,4 +38,6 @@ public interface Graph<V, E extends Edge> {
     List<E> edgesOf(V vertex);
 
     void validateEdge(Edge edge);
+
+    boolean contains(V vertex);
 }

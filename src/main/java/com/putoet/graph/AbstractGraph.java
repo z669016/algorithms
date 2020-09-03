@@ -112,6 +112,11 @@ public abstract class AbstractGraph<V, E extends Edge> implements Graph<V, E> {
     }
 
     @Override
+    public boolean contains(V vertex) {
+        return vertices.contains(vertex);
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < vertexCount(); i++) {
