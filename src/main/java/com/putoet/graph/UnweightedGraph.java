@@ -20,6 +20,10 @@ import java.util.List;
 
 public class UnweightedGraph<V> extends AbstractGraph<V, Edge> {
 
+    public UnweightedGraph() {
+        super();
+    }
+
     public UnweightedGraph(List<V> vertices) {
         super(vertices);
     }

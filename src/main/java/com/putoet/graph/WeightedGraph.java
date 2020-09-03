@@ -53,6 +53,8 @@ public class WeightedGraph<V> extends AbstractGraph<V, WeightedEdge> {
         }
     }
 
+    public WeightedGraph() { super(); }
+
     public WeightedGraph(List<V> vertices) {
         super(vertices);
     }
