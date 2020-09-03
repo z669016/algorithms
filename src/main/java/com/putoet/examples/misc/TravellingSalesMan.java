@@ -34,7 +34,7 @@ public class TravellingSalesMan {
                         "White River Junction", 65,
                         "Bennington", 40));
 
-        final TSP<String> tsp = new TSP(vtDistances);
+        final TSP tsp = new TSP(vtDistances);
         final String[] shortestPath = tsp.findShortestPath();
         final int distance = tsp.pathDistance(shortestPath);
         System.out.println("The shortest path is " + Arrays.toString(shortestPath) + " in " +
