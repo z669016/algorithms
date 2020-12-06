@@ -60,6 +60,11 @@ class UnweightedGraphTest {
         graph.addEdge("Boston", "New York");
         graph.addEdge("New York", "Philadelphia");
         graph.addEdge("Philadelphia", "Washington");
+
+        // Doubles must not create additional edges
+        graph.addEdge("Dallas", "Chicago");
+        graph.addEdge("Detroit", "Boston");
+        graph.addEdge("Philadelphia", "Washington");
     }
 
     @Test

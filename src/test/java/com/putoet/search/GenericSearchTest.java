@@ -107,7 +107,8 @@ class GenericSearchTest {
 
     @Test
     void astar() {
-        final Optional<GenericSearch.Node<Maze.Location>> result = GenericSearch.astar(start, maze::goalTest, maze::successors, maze::manhattanDistance);
+        final Optional<GenericSearch.Node<Maze.Location>> result =
+                GenericSearch.astar(start, maze::goalTest, maze::successors, maze::manhattanDistance);
         assertTrue(result.isPresent());
 
         final List<Maze.Location> path = GenericSearch.nodeToPath(result.get());

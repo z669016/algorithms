@@ -32,9 +32,10 @@ public class UnweightedGraph<V> extends AbstractGraph<V, Edge> {
         assert edge != null;
 
         validateEdge(edge);
-
-        edges.get(edge.u).add(edge);
-        edges.get(edge.v).add(edge.reversed());
+        if (!edgesOf(edge.u).contains(edge))
+            edges.get(edge.u).add(edge);
+        if (!edgesOf(edge.v).contains(edge.reversed()))
+            edges.get(edge.v).add(edge.reversed());
     }
 
     public void addEdge(int u, int v) {

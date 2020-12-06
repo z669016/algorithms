@@ -16,6 +16,8 @@
 
 package com.putoet.graph;
 
+import java.util.Objects;
+
 public class Edge {
     public final int u; // the "from" vertex
     public final int v; // the "to" vertex
@@ -30,6 +32,19 @@ public class Edge {
 
     public Edge reversed() {
         return new Edge(v, u);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Edge)) return false;
+        Edge edge = (Edge) o;
+        return u == edge.u && v == edge.v;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(u, v);
     }
 
     @Override
