@@ -168,6 +168,39 @@ public class GenericSearch {
         return Optional.empty();
     }
 
+    public static <T> List<Node<T>> findAll(T initial, Predicate<T> goalTest, Function<T, List<T>> successors) {
+        assert initial != null;
+        assert goalTest != null;
+        assert successors != null;
+
+        final List<Node<T>> all = new ArrayList<>();
+        final Queue<Node<T>> frontier = new LinkedList<>();
+        frontier.offer(new Node<>(initial, null));
+
+        final Set<T> explored = new HashSet<>();
+        explored.add(initial);
+
+        while (!frontier.isEmpty()) {
+            final Node<T> currentNode = frontier.poll();
+            final T currentState = currentNode.state;
+
+            if (goalTest.test(currentState)) {
+                all.add(currentNode);
+                continue;
+            }
+
+            for (T child : successors.apply(currentState)) {
+                if (explored.contains(child)) {
+                    continue;
+                }
+                explored.add(child);
+                frontier.offer(new Node<>(child, currentNode));
+            }
+        }
+
+        return all;
+    }
+
     public static <T> Optional<Node<T>> astar(T initial, Predicate<T> goalTest, Function<T, List<T>> successors, ToDoubleFunction<T> heuristic) {
         assert initial != null;
         assert goalTest != null;
