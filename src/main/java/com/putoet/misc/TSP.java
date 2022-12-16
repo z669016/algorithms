@@ -90,4 +90,25 @@ public class TSP {
         shortestPath[shortestPath.length - 1] = shortestPath[0];
         return shortestPath;
     }
+
+    public String[] findLongestPath() {
+        final String[] cities = distances.keySet().toArray(String[]::new);
+        final List<String[]> paths = permutations(cities);
+
+        String[] longestPath = null;
+        int maxDistance = Integer.MIN_VALUE;
+        for (String[] path : paths) {
+            int distance = pathDistance(path);
+
+            distance += distances.get(path[path.length - 1]).get(path[0]);
+            if (distance > maxDistance) {
+                maxDistance = distance;
+                longestPath = path;
+            }
+        }
+
+        longestPath = Arrays.copyOf(longestPath, longestPath.length + 1);
+        longestPath[longestPath.length - 1] = longestPath[0];
+        return longestPath;
+    }
 }
