@@ -23,7 +23,6 @@ class GenericSearchTest {
         maze = new RandomMaze(10, 10, start, goal, 0.2);
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Test
     void linearContains() {
         assertThrows(AssertionError.class, () -> GenericSearch.linearContains(null, 5));
@@ -43,7 +42,7 @@ class GenericSearchTest {
 
     @Test
     void nodeCreate() {
-        assertThrows(AssertionError.class, () -> new GenericSearch.Node<String>((String) null, null));
+        assertThrows(AssertionError.class, () -> new GenericSearch.Node<>(null, null));
 
         final String initial = "START";
         final GenericSearch.Node<String> startNode = new GenericSearch.Node<>(initial, null);

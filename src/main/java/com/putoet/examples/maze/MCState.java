@@ -104,7 +104,7 @@ public class MCState {
 
     public static void displaySolution(List<MCState> path) {
         assert path != null;
-        if (path.size() == 0)
+        if (path.isEmpty())
             return;
 
         MCState oldState = path.get(0);
@@ -129,8 +129,7 @@ public class MCState {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof MCState)) return false;
-        MCState mcState = (MCState) o;
+        if (!(o instanceof MCState mcState)) return false;
         return wm == mcState.wm &&
                 wc == mcState.wc &&
                 em == mcState.em &&

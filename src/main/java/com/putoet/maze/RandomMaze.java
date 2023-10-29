@@ -57,8 +57,8 @@ public class RandomMaze implements Maze<RandomMaze.Cell> {
 
         randomlyFill(sparseness);
 
-        grid[start.row][start.column] = Cell.START;
-        grid[goal.row][goal.column] = Cell.GOAL;
+        grid[start.row()][start.column()] = Cell.START;
+        grid[goal.row()][goal.column()] = Cell.GOAL;
     }
 
     public RandomMaze() {
@@ -104,17 +104,17 @@ public class RandomMaze implements Maze<RandomMaze.Cell> {
         assert ml != null;
 
         final List<Location> locations = new ArrayList<>();
-        if (ml.row + 1 < rows && grid[ml.row + 1][ml.column] != Cell.BLOCKED) {
-            locations.add(new Location(ml.row + 1, ml.column));
+        if (ml.row() + 1 < rows && grid[ml.row() + 1][ml.column()] != Cell.BLOCKED) {
+            locations.add(new Location(ml.row() + 1, ml.column()));
         }
-        if (ml.row - 1 >= 0 && grid[ml.row - 1][ml.column] != Cell.BLOCKED) {
-            locations.add(new Location(ml.row - 1, ml.column));
+        if (ml.row() - 1 >= 0 && grid[ml.row() - 1][ml.column()] != Cell.BLOCKED) {
+            locations.add(new Location(ml.row() - 1, ml.column()));
         }
-        if (ml.column + 1 < columns && grid[ml.row][ml.column + 1] != Cell.BLOCKED) {
-            locations.add(new Location(ml.row, ml.column + 1));
+        if (ml.column() + 1 < columns && grid[ml.row()][ml.column() + 1] != Cell.BLOCKED) {
+            locations.add(new Location(ml.row(), ml.column() + 1));
         }
-        if (ml.column - 1 >= 0 && grid[ml.row][ml.column - 1] != Cell.BLOCKED) {
-            locations.add(new Location(ml.row, ml.column - 1));
+        if (ml.column() - 1 >= 0 && grid[ml.row()][ml.column() - 1] != Cell.BLOCKED) {
+            locations.add(new Location(ml.row(), ml.column() - 1));
         }
         return locations;
     }
@@ -123,20 +123,20 @@ public class RandomMaze implements Maze<RandomMaze.Cell> {
         assert path != null;
 
         for (Location ml : path) {
-            grid[ml.row][ml.column] = Cell.PATH;
+            grid[ml.row()][ml.column()] = Cell.PATH;
         }
-        grid[start.row][start.column] = Cell.START;
-        grid[goal.row][goal.column] = Cell.GOAL;
+        grid[start.row()][start.column()] = Cell.START;
+        grid[goal.row()][goal.column()] = Cell.GOAL;
     }
 
     public void clear(List<Location> path) {
         assert path != null;
 
         for (Location ml : path) {
-            grid[ml.row][ml.column] = Cell.EMPTY;
+            grid[ml.row()][ml.column()] = Cell.EMPTY;
         }
-        grid[start.row][start.column] = Cell.START;
-        grid[goal.row][goal.column] = Cell.GOAL;
+        grid[start.row()][start.column()] = Cell.START;
+        grid[goal.row()][goal.column()] = Cell.GOAL;
     }
 
     @Override
@@ -152,6 +152,6 @@ public class RandomMaze implements Maze<RandomMaze.Cell> {
     @Override
     public Cell cell(Location location) {
         Maze.checkLocation(location, rows, columns);
-        return grid[location.row][location.column];
+        return grid[location.row()][location.column()];
     }
 }

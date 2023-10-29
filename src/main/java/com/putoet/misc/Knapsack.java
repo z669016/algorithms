@@ -24,7 +24,7 @@ public final class Knapsack {
         String name();
         int weight();
         double value();
-    };
+    }
 
     public static Item itemOf(String name, int weight, double value) {
         return new Item() {

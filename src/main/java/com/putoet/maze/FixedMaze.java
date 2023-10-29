@@ -1,19 +1,3 @@
-// FixedMaze.java
-//
-// Copyright 2020 Rene van Putten
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package com.putoet.maze;
 
 import java.util.ArrayList;
@@ -54,9 +38,9 @@ public class FixedMaze implements Maze<FixedMaze.Cell> {
 
     public FixedMaze(List<String> maze) {
         assert maze != null;
-        assert maze.size() > 0;
+        assert !maze.isEmpty();
 
-        grid = maze.stream().sequential()
+        grid = maze.stream()
                 .map(line -> line.chars()
                         .mapToObj(Cell::of)
                         .toArray(Cell[]::new))
@@ -103,17 +87,17 @@ public class FixedMaze implements Maze<FixedMaze.Cell> {
         assert ml != null;
 
         final List<Maze.Location> locations = new ArrayList<>();
-        if (ml.row + 1 < rows && grid[ml.row + 1][ml.column] != Cell.BLOCKED) {
-            locations.add(new Maze.Location(ml.row + 1, ml.column));
+        if (ml.row() + 1 < rows && grid[ml.row() + 1][ml.column()] != Cell.BLOCKED) {
+            locations.add(new Maze.Location(ml.row() + 1, ml.column()));
         }
-        if (ml.row - 1 >= 0 && grid[ml.row - 1][ml.column] != Cell.BLOCKED) {
-            locations.add(new Maze.Location(ml.row - 1, ml.column));
+        if (ml.row() - 1 >= 0 && grid[ml.row() - 1][ml.column()] != Cell.BLOCKED) {
+            locations.add(new Maze.Location(ml.row() - 1, ml.column()));
         }
-        if (ml.column + 1 < columns && grid[ml.row][ml.column + 1] != Cell.BLOCKED) {
-            locations.add(new Maze.Location(ml.row, ml.column + 1));
+        if (ml.column() + 1 < columns && grid[ml.row()][ml.column() + 1] != Cell.BLOCKED) {
+            locations.add(new Maze.Location(ml.row(), ml.column() + 1));
         }
-        if (ml.column - 1 >= 0 && grid[ml.row][ml.column - 1] != Cell.BLOCKED) {
-            locations.add(new Maze.Location(ml.row, ml.column - 1));
+        if (ml.column() - 1 >= 0 && grid[ml.row()][ml.column() - 1] != Cell.BLOCKED) {
+            locations.add(new Maze.Location(ml.row(), ml.column() - 1));
         }
         return locations;
     }
@@ -122,20 +106,20 @@ public class FixedMaze implements Maze<FixedMaze.Cell> {
         assert path != null;
 
         for (Maze.Location ml : path) {
-            grid[ml.row][ml.column] = Cell.PATH;
+            grid[ml.row()][ml.column()] = Cell.PATH;
         }
-        grid[start.row][start.column] = Cell.START;
-        grid[goal.row][goal.column] = Cell.GOAL;
+        grid[start.row()][start.column()] = Cell.START;
+        grid[goal.row()][goal.column()] = Cell.GOAL;
     }
 
     public void clear(List<Maze.Location> path) {
         assert path != null;
 
         for (Maze.Location ml : path) {
-            grid[ml.row][ml.column] = Cell.EMPTY;
+            grid[ml.row()][ml.column()] = Cell.EMPTY;
         }
-        grid[start.row][start.column] = Cell.START;
-        grid[goal.row][goal.column] = Cell.GOAL;
+        grid[start.row()][start.column()] = Cell.START;
+        grid[goal.row()][goal.column()] = Cell.GOAL;
     }
 
     @Override
@@ -151,6 +135,6 @@ public class FixedMaze implements Maze<FixedMaze.Cell> {
     @Override
     public Cell cell(Location location) {
         Maze.checkLocation(location, rows, columns);
-        return grid[location.row][location.column];
+        return grid[location.row()][location.column()];
     }
 }

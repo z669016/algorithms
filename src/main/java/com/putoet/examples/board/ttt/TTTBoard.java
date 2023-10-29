@@ -26,7 +26,7 @@ import java.util.List;
 public class TTTBoard implements Board<Integer> {
     private static final int NUM_SQUARES = 9;
     private final TTTPiece[] position;
-    private TTTPiece turn;
+    private final TTTPiece turn;
 
     public TTTBoard(TTTPiece[] position, TTTPiece turn) {
         assert position != null && position.length == NUM_SQUARES;

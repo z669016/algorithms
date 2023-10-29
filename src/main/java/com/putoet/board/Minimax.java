@@ -1,19 +1,3 @@
-// Minimax.java
-//
-// Copyright 2020 Rene van Putten
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package com.putoet.board;
 
 public class Minimax {
@@ -31,7 +15,7 @@ public class Minimax {
     private static <Move> double minimaxMaximize(Board<Move> board, Piece originalPlayer, int maxDepth) {
         double bestEval = Double.NEGATIVE_INFINITY;
         for (Move move : board.getLegalMoves()) {
-            double result = minimax(board.move(move), false, originalPlayer, maxDepth - 1);
+            final double result = minimax(board.move(move), false, originalPlayer, maxDepth - 1);
             bestEval = Math.max(result, bestEval);
         }
         return bestEval;
@@ -40,7 +24,7 @@ public class Minimax {
     private static <Move> double minimaxMinimize(Board<Move> board, Piece originalPlayer, int maxDepth) {
         double worstEval = Double.POSITIVE_INFINITY;
         for (Move move : board.getLegalMoves()) {
-            double result = minimax(board.move(move), true, originalPlayer, maxDepth - 1);
+            final double result = minimax(board.move(move), true, originalPlayer, maxDepth - 1);
             worstEval = Math.min(result, worstEval);
         }
         return worstEval;
@@ -52,7 +36,7 @@ public class Minimax {
         double bestEval = Double.NEGATIVE_INFINITY;
         Move bestMove = null;
         for (Move move : board.getLegalMoves()) {
-            double result = alphabeta(board.move(move), false, board.getTurn(), maxDepth);
+            final double result = alphabeta(board.move(move), false, board.getTurn(), maxDepth);
             if (result > bestEval) {
                 bestEval = result;
                 bestMove = move;

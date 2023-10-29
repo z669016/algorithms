@@ -21,14 +21,7 @@ import java.util.function.IntConsumer;
 
 public class WeightedGraph<V> extends AbstractGraph<V, WeightedEdge> {
 
-    public static final class DijkstraNode implements Comparable<DijkstraNode> {
-        public final int vertex;
-        public final double distance;
-
-        public DijkstraNode(int vertex, double distance) {
-            this.vertex = vertex;
-            this.distance = distance;
-        }
+    public record DijkstraNode(int vertex, double distance) implements Comparable<DijkstraNode> {
 
         @Override
         public int compareTo(DijkstraNode other) {
@@ -38,14 +31,7 @@ public class WeightedGraph<V> extends AbstractGraph<V, WeightedEdge> {
         }
     }
 
-    public static final class DijkstraResult {
-        public final double[] distances;
-        public final Map<Integer, WeightedEdge> pathMap;
-
-        public DijkstraResult(double[] distances, Map<Integer, WeightedEdge> pathMap) {
-            this.distances = distances;
-            this.pathMap = pathMap;
-        }
+    public record DijkstraResult(double[] distances, Map<Integer, WeightedEdge> pathMap) {
 
         @Override
         public String toString() {
@@ -53,7 +39,9 @@ public class WeightedGraph<V> extends AbstractGraph<V, WeightedEdge> {
         }
     }
 
-    public WeightedGraph() { super(); }
+    public WeightedGraph() {
+        super();
+    }
 
     public WeightedGraph(List<V> vertices) {
         super(vertices);
@@ -168,7 +156,7 @@ public class WeightedGraph<V> extends AbstractGraph<V, WeightedEdge> {
     public static List<WeightedEdge> pathOf(int start, int end, Map<Integer, WeightedEdge> path) {
         assert path != null;
 
-        if (path.size() == 0) {
+        if (path.isEmpty()) {
             return List.of();
         }
 
@@ -200,8 +188,7 @@ public class WeightedGraph<V> extends AbstractGraph<V, WeightedEdge> {
 
     public String toString(List<WeightedEdge> path) {
         final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < path.size(); i++) {
-            final WeightedEdge edge = path.get(i);
+        for (final WeightedEdge edge : path) {
             sb.append(String.format("%s %.0f > %s", vertexAt(edge.u), edge.weight, vertexAt(edge.v)));
             sb.append(System.lineSeparator());
         }

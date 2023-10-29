@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FixedMazeTest {
     private FixedMaze maze;
-    private List<String> mazeText = List.of(
+    private final List<String> mazeText = List.of(
             "###########",
             "#S........#",
             "#.#######.#",

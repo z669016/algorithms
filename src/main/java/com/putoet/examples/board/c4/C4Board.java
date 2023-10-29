@@ -76,7 +76,7 @@ public class C4Board implements Board<Integer> {
 
     private final C4Piece[][] position; // column first, then row
     private final int[] columnCount;
-    private C4Piece turn;
+    private final C4Piece turn;
 
     public C4Board() {
         position = new C4Piece[NUM_COLUMNS][NUM_ROWS];
@@ -137,7 +137,7 @@ public class C4Board implements Board<Integer> {
     private int countSegment(C4Location[] segment, C4Piece color) {
         int count = 0;
         for (C4Location location : segment) {
-            if (position[location.column][location.row] == color) {
+            if (position[location.column()][location.row()] == color) {
                 count++;
             }
         }

@@ -53,7 +53,7 @@ class WeightedGraphTest {
     @Test
     void dijkstra() {
         final WeightedGraph.DijkstraResult result = graph.dijkstra("Los Angeles");
-        final Map<String, Double> distances = graph.distancesMap(result.distances);
+        final Map<String, Double> distances = graph.distancesMap(result.distances());
 
         assertEquals(2474.0, distances.get("New York"));
         assertEquals(1992.0, distances.get("Detroit"));
@@ -71,7 +71,7 @@ class WeightedGraphTest {
         assertEquals(2605.0, distances.get("Boston"));
         assertEquals(1372, distances.get("Houston"));
 
-        final List<WeightedEdge> path = graph.pathOf("Los Angeles", "Boston", result.pathMap);
+        final List<WeightedEdge> path = graph.pathOf("Los Angeles", "Boston", result.pathMap());
         assertEquals(2605.0, WeightedGraph.totalWeight(path));
     }
 }

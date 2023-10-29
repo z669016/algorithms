@@ -37,8 +37,7 @@ public class Edge {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Edge)) return false;
-        Edge edge = (Edge) o;
+        if (!(o instanceof Edge edge)) return false;
         return u == edge.u && v == edge.v;
     }
 

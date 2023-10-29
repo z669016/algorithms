@@ -17,35 +17,15 @@
 package com.putoet.maze;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 public interface Maze<T> {
-    class Location {
-        public final int row;
-        public final int column;
-
-        public Location(int row, int column) {
+    record Location(int row, int column) {
+        public Location {
             assert row >= 0;
             assert column >= 0;
 
-            this.row = row;
-            this.column = column;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Location)) return false;
-            Location that = (Location) o;
-            return row == that.row &&
-                    column == that.column;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(row, column);
         }
 
         @Override
